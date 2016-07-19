@@ -30,9 +30,9 @@ var fact = function(range){
   //console.log("pair[" + 1 + "] = " + pair[1]);
   return pair;
 }//end of fact() function
-​
+
 var quads = function(aRange,bRange){
-​
+
 var bool = function(){
   plusminus = Math.floor(Math.random()*2);
   if(plusminus == 0){
@@ -61,7 +61,7 @@ if(c1 > 0){ c1 = "+" + c1; }
 if(a2 == 1){ a2 = ""; }
 if(a2 == -1){ a2 = "-"; }
 if(c2 > 0){ c2   = "+" + c2; }
-​
+
 //console.log("a1=" + a1);
 problem = num1 + "x^2" + num2  + "x" + num3;
 solution = "(" + a1 + "x" + c1 + ")(" + a2 + "x" + c2 + ")";
@@ -87,7 +87,7 @@ function header(){
     headerDone = false;
   }
 }
-​
+
 function addEz(){
   if(headerDone){
     header();
@@ -122,7 +122,7 @@ function addEz(){
       }
     createInput(easyInput,easyRow);
 }
-​
+
 function addMod(){
   if(headerDone){
     header();
@@ -140,7 +140,7 @@ row.appendChild(cell);
 moderateInput = false;
   }
 }
-​
+
 function addHard(){
   if(headerDone){
     header();
@@ -157,7 +157,7 @@ row.appendChild(cell);
 hardInput = false;
   }
 }
-​
+
 function simplepdf(){//////////////////////////////////................
 // console.log("beginning of simplepdf function");
   function getStudents(){ // get the student string from the text input and changes it to an array students[]
@@ -197,12 +197,12 @@ function simplepdf(){//////////////////////////////////................
   }
   getStudents();
   getSettings();
-​
+
   for(var k=0; k < students.length; k++){
     if(students[k] || k==0){//deals with extra spaces in the name students[k] array
     probs = [];
     sols = [];
-​
+
     easyNum = parseInt(easyNum);
     moderateNum = parseInt(moderateNum);
     hardNum = parseInt(hardNum);
@@ -218,7 +218,7 @@ function simplepdf(){//////////////////////////////////................
           aRange = 24;
           bRange = 24;
         }
-​
+
       //call quads() which returns an array with two elements one for prob and one for solution
       retArray = quads(aRange,bRange);
       var probLength = probs.push(retArray[0]);
@@ -233,7 +233,7 @@ function simplepdf(){//////////////////////////////////................
         }
       }
     }//end of for loop
-​
+
           var line = 10;
           page = 0;
           var doc = new jsPDF();
@@ -305,7 +305,7 @@ function simplepdf(){//////////////////////////////////................
             }
           }
           doc.save(students[k] + ' ProblemSheet.pdf');
-​
+
           var doc = new jsPDF();
           line = 10;
           if(students[k]){
@@ -318,7 +318,7 @@ function simplepdf(){//////////////////////////////////................
           for(var i=0; i < total; i++){
           doc.text(20,line,(i+1) + ". " + probs[i] + " = " + sols[i]);
           line += 10;;
-​
+
           if(line==270){
             // doc.text(20,line,'page ' + (page+1) + ', pageWidth ' + pageWidth);
             doc.text(20,line,'page ' + (page+1));
