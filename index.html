@@ -1,77 +1,95 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Quadratic Equation Generator</title>
-    <script src="jsPDF-1.2.60/jspdf.js"></script>
-    <script src="jsPDF-1.2.60/libs/FileSaver.min.js"></script>
-    <script src="jsScriptQuads.js"></script>
 
-<style>
-.button{
-padding: 10px;
- border-style: solid;
- display: inline;
- background-color: #9de8e1;
-border: 4px solid #12e8d6;
-border-radius: 8px;
-padding: 10px;
-margin: 10px;
-font-weight: bold;
-}
-.button:hover{
- background: #8fd3ce;
-border: 4px solid #10c9ba;
-color: black; /* does not over ride default blue text for a link*/
-}
-div{
-padding: 10px;
-margin: 10px;
-/*spacing: 10px;
+<head>
+  <meta charset="utf-8">
+  <title>Quadratic Equation Generator</title>
+  <link rel="shortcut icon" href="/img/earth-16-3320.png" />
+  <script src="jsPDF-1.2.60/jspdf.js"></script>
+  <script src="jsPDF-1.2.60/libs/FileSaver.min.js"></script>
+  <script src="jsScriptQuads.js"></script>
+
+  <style>
+    .button {
+      padding: 10px;
+      border-style: solid;
+      display: inline;
+      background-color: #9de8e1;
+      border: 4px solid #12e8d6;
+      border-radius: 8px;
+      padding: 10px;
+      margin: 10px;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background: #8fd3ce;
+      border: 4px solid #10c9ba;
+      color: black;
+      /* does not over ride default blue text for a link*/
+    }
+
+    div {
+      padding: 10px;
+      margin: 10px;
+      /*spacing: 10px;
 border: 4px solid black;
 border-radius: 8px;
 background-color: #9de8e1;
 display: inline;*/
-}
-</style>
+    }
+  </style>
 
 
-  </head>
-  <body>
-    <!-- <h1>Generate quadratic expressions</h1> -->
-      <div>
-        Names: <input id="students" type="text" placeholder="Fred Sarah John Anna"> (optional)<br>
-        (Place comma or space between names)
-        <br><br>
-        <table id="table">
-          <tr id="header">
-            <th align="right">Level</th>
-          </tr>
-          <tr id="easyRow">
-              <td align="right">Easy:</td><td><input onclick="addEz();" type="checkbox" id="easy"></td>
-          </tr>
-          <tr id="modRow">
-              <td align="right">Moderate:</td><td><input onclick="addMod();" type="checkbox" id="moderate"></td>
-          </tr>
-          <tr id="hardRow">
-              <td align="right">Hard:</td><td><input onclick="addHard();" type="checkbox" id="hard"></td>
-          </tr>
-        </table>
-      </div>
-      <div>
-        <br><button onclick="simplepdf();">Generate PDF</button>
-      </div>
-      <!-- Scripts down here -->
-  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-  		<script src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
+</head>
 
-  		<!-- Code editor -->
+<body>
+  <!-- <h1>Generate quadratic expressions</h1> -->
+  <div>
+    Names:
+    <input id="students" type="text" placeholder="Fred Sarah John Anna"> (optional)
+    <br> (Place comma or space between names)
+    <br>
+    <br>
+    <table id="table">
+      <tr id="header">
+        <th align="right">Level</th>
+      </tr>
+      <tr id="easyRow">
+        <td align="right">Easy:</td>
+        <td>
+          <input onclick="addEz();" type="checkbox" id="easy">
+        </td>
+      </tr>
+      <tr id="modRow">
+        <td align="right">Moderate:</td>
+        <td>
+          <input onclick="addMod();" type="checkbox" id="moderate">
+        </td>
+      </tr>
+      <tr id="hardRow">
+        <td align="right">Hard:</td>
+        <td>
+          <input onclick="addHard();" type="checkbox" id="hard">
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <br>
+    <button onclick="simplepdf();">Generate PDF</button>
+  </div>
+  <!-- Scripts down here -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
 
-  		<!-- <script src="https://cdn.jsdelivr.net/ace/1.1.01/noconflict/ace.js" type="text/javascript" charset="utf-8"></script> -->
+  <!-- Code editor -->
 
-  		<!-- Scripts in development mode -->
-  		<script type="text/javascript" src="jsPDF-1.2.60/dist/jspdf.min.js"></script>
-  		<!--script type="text/javascript" src="jspdf.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/ace/1.1.01/noconflict/ace.js" type="text/javascript" charset="utf-8"></script> -->
+
+  <!-- Scripts in development mode -->
+  <script type="text/javascript" src="jsPDF-1.2.60/dist/jspdf.min.js"></script>
+  <!--script type="text/javascript" src="jspdf.js"></script>
   		<script type="text/javascript" src="./libs/FileSaver.js/FileSaver.js"></script>
   		<script type="text/javascript" src="./libs/Blob.js/Blob.js"></script>
   		<script type="text/javascript" src="./libs/Blob.js/BlobBuilder.js"></script>
@@ -86,29 +104,31 @@ display: inline;*/
   		<script type="text/javascript" src="./plugins/split_text_to_size.js"></script>
   		<script type="text/javascript" src="./plugins/standard_fonts_metrics.js"></script-->
 
-  		<!-- Editor -->
-  		<!-- <script type="text/javascript" src="./jsPDF-1.2.60/examples/js/editor.js"></script> -->
+  <!-- Editor -->
+  <!-- <script type="text/javascript" src="./jsPDF-1.2.60/examples/js/editor.js"></script> -->
 
-  		<!-- Analytics -->
-  		<script type="text/javascript">
-  			$(document).ready(function() {
-  				if(jsPDF && jsPDF.version) {
-  					$('#dversion').text('Version ' + jsPDF.version.split('T').shift());
-  				}
-  			});
+  <!-- Analytics -->
+  <script type="text/javascript">
+    $(document).ready(function() {
+      if (jsPDF && jsPDF.version) {
+        $('#dversion').text('Version ' + jsPDF.version.split('T').shift());
+      }
+    });
 
-  		  var _gaq = _gaq || [];
-  		  _gaq.push(['_setAccount', 'UA-32767308-2']);
-  		  _gaq.push(['_trackPageview']);
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32767308-2']);
+    _gaq.push(['_trackPageview']);
 
-  		  (function() {
-  			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-  			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  		  })();
-
-  		</script>
-  		<!--script type="text/javascript">
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  <!--script type="text/javascript">
   		adroll_adv_id = "P3OVQHTGMBA37E2Z6M77AQ";
   		adroll_pix_id = "GHWLXTPCARHSXCCSWFFDR7";
   		(function () {
@@ -129,4 +149,5 @@ display: inline;*/
   <script src="jsPDF-1.2.60/jspdf.js"></script>
   <script src="jsScriptQuads.js"></script>
 </body>
+
 </html>
