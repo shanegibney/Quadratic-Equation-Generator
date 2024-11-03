@@ -13,3 +13,5 @@
 Quadratic-Equation-Generator [gh-pages](http://shanegibney.github.io/Quadratic-Equation-Generator/)
 
  <img width="500" alt="screen shot 2016-06-20 at 23 38 37" src="https://cloud.githubusercontent.com/assets/17167992/16969668/67f30402-4e0e-11e6-89e9-b8fbe57adca7.png">
+
+Although this does produce a solution sheet there are several answers to some quadratic equations. 
